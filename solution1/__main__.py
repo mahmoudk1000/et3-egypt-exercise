@@ -11,7 +11,7 @@ class ImageMetadata():
     Then gather metadata of each and export a csv file with all data.
     '''
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.script_path = os.path.dirname(os.path.abspath(__file__))
         self.source_path = os.path.join(self.script_path, "dairies")
         self.folder_path = os.path.join(self.script_path, "images")
@@ -50,7 +50,7 @@ class ImageMetadata():
                     images.add(os.path.join(root, file))
 
         # create a csv file to write image details
-        with open("image_details.csv", mode="w", newline="") as file:
+        with open("image_details.csv", mode="w") as file:
             writer = csv.writer(file)
             writer.writerow(["Image", "Image Size", "Image Modification data"])
 
@@ -64,6 +64,8 @@ class ImageMetadata():
                     last_modified))  # convert to readable format
                 file_name = os.path.basename(image)
                 writer.writerow([file_name, size, last_modified])
+
+        print("CSV is made!")
 
 
 images = ImageMetadata()
